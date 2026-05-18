@@ -1,60 +1,90 @@
 <odoo>
 
-    <!-- List View -->
-    <record id="view_hospital_appointment_list" model="ir.ui.view">
-        <field name="name">hospital.appointment.list</field>
-        <field name="model">hospital.appointment</field>
-        <field name="arch" type="xml">
-            <list>
-                <field name="patient_id"/>
-                <field name="doctor_id"/>
-                <field name="appointment_date"/>
-                <field name="status"/>
-            </list>
-        </field>
-    </record>
+  <!-- List View -->
+  <record id="view_hospital_appointment_list" model="ir.ui.view">
+    <field name="name">hospital.appointment.list</field>
+    <field name="model">hospital.appointment</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="patient_id" />
+        <field name="doctor_id" />
+        <field name="appointment_date" />
+        <field name="status" />
+      </list>
+    </field>
+  </record>
 
-    <!-- Form View -->
-    <record id="view_hospital_appointment_form" model="ir.ui.view">
-        <field name="name">hospital.appointment.form</field>
-        <field name="model">hospital.appointment</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group>
-                        <group>
-                            <field name="patient_id"/>
-                            <field name="doctor_id"/>
-                        </group>
+  <!-- Form View -->
+  <record id="view_hospital_appointment_form" model="ir.ui.view">
+    <field name="name">hospital.appointment.form</field>
+    <field name="model">hospital.appointment</field>
+    <field name="arch" type="xml">
+      <form>
+        <header>
 
-                        <group>
-                            <field name="appointment_date"/>
-                            <field name="status"/>
-                        </group>
-                    </group>
+          <button name="action_confirm"
+            string="Confirm"
+            type="object"
+            class="btn-primary"
+            invisible="status != 'draft'" />
 
-                    <notebook>
-                        <page string="Notes">
-                            <field name="notes"/>
-                        </page>
-                    </notebook>
-                </sheet>
-            </form>
-        </field>
-    </record>
+          <button name="action_done"
+            string="Done"
+            type="object"
+            class="btn-success"
+            invisible="status != 'confirmed'" />
 
-    <!-- Action -->
-    <record id="action_hospital_appointment" model="ir.actions.act_window">
-        <field name="name">Appointments</field>
-        <field name="res_model">hospital.appointment</field>
-        <field name="view_mode">list,form</field>
-    </record>
+          <button name="action_cancel"
+            string="Cancel"
+            type="object"
+            class="btn-danger"
+            invisible="status == 'done'" />
 
-    <!-- Menu -->
-    <menuitem id="hospital_appointment_menu"
-              name="Appointments"
-              parent="hospital_management_root_menu"
-              action="action_hospital_appointment"
-              sequence="30"/>
+          <button name="action_draft"
+            string="Reset to Draft"
+            type="object"
+            invisible="status == 'draft'" />
+
+          <field name="status"
+            widget="statusbar"
+            statusbar_visible="draft,confirmed,done,cancel" />
+
+        </header>
+        <sheet>
+          <group>
+            <group>
+              <field name="patient_id" />
+              <field name="doctor_id" />
+            </group>
+
+            <group>
+              <field name="appointment_date" />
+              <field name="status" />
+            </group>
+          </group>
+
+          <notebook>
+            <page string="Notes">
+              <field name="notes" />
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Action -->
+  <record id="action_hospital_appointment" model="ir.actions.act_window">
+    <field name="name">Appointments</field>
+    <field name="res_model">hospital.appointment</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <!-- Menu -->
+  <menuitem id="hospital_appointment_menu"
+    name="Appointments"
+    parent="hospital_management_root_menu"
+    action="action_hospital_appointment"
+    sequence="30" />
 
 </odoo>

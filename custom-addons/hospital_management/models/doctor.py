@@ -19,6 +19,8 @@ class HospitalDoctor(models.Model):
 
     salary = fields.Float(string="Salary")
 
+    employee_id = fields.Many2one("hr.employee", string="Related Employee")
+    user_id = fields.Many2one("res.users", string="Related User")
     active = fields.Boolean(default=True)
 
     appointment_ids = fields.One2many(

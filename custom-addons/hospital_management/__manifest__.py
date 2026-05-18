@@ -4,7 +4,8 @@
     "summary": "Hospital Management System",
     "author": "Your Name",
     "category": "Management",
-    "depends": ["base"],
+    # "depends": ["base"],
+    "depends": ["base", "hr"],
     "data": [
         "security/ir.model.access.csv",
         "views/patient_views.xml",

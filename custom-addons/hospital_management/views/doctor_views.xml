@@ -10,6 +10,8 @@
         <field name="specialization" />
         <field name="phone" />
         <field name="salary" />
+        <field name="employee_id"/>
+        <field name="user_id"/>
       </list>
     </field>
   </record>
@@ -27,6 +29,8 @@
               <field name="age" />
               <field name="gender" />
               <field name="specialization" />
+              <field name="employee_id"/>
+              <field name="user_id"/>
             </group>
 
             <group>
