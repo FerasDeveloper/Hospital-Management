@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+
+# Odoo
+odoo-source/
+
+# Logs
+*.log
+
+# Environment
+.env
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Linux
+.DS_Store

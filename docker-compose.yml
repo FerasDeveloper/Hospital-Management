@@ -1,0 +1,34 @@
+version: '3.9'
+services:
+  odoo-db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  odoo:
+    image: odoo:19.0
+    depends_on:
+      - odoo-db
+    ports:
+      - "8069:8069"
+    environment:
+      - HOST=odoo-db
+      - USER=odoo
+      - PASSWORD=odoo
+    volumes:
+      - ./custom-addons:/mnt/extra-addons
+      - ./odoo-source/odoo:/odoo/odoo:ro
+      - ./odoo-source/addons:/odoo/addons:ro
+    command:
+      - odoo
+      - --addons-path=/odoo/addons,/mnt/extra-addons
+      - --dev=reload
+    restart: unless-stopped
+
+volumes:
+  odoo-db-data:
