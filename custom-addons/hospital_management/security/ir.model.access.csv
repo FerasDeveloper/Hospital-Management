@@ -1,4 +1,12 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hospital_patient,hospital.patient,model_hospital_patient,,1,1,1,1
-access_hospital_doctor,hospital.doctor,model_hospital_doctor,,1,1,1,1
-access_hospital_appointment,hospital.appointment,model_hospital_appointment,,1,1,1,1
+
+access_patient_admin,hospital.patient.admin,model_hospital_patient,hospital_management.group_hospital_admin,1,1,1,1
+access_doctor_admin,hospital.doctor.admin,model_hospital_doctor,hospital_management.group_hospital_admin,1,1,1,1
+access_appointment_admin,hospital.appointment.admin,model_hospital_appointment,hospital_management.group_hospital_admin,1,1,1,1
+
+access_patient_doctor,hospital.patient.doctor,model_hospital_patient,hospital_management.group_hospital_doctor,1,0,0,0
+access_doctor_doctor,hospital.doctor.doctor,model_hospital_doctor,hospital_management.group_hospital_doctor,1,0,0,0
+access_appointment_doctor,hospital.appointment.doctor,model_hospital_appointment,hospital_management.group_hospital_doctor,1,1,0,0
+
+access_patient_receptionist,hospital.patient.receptionist,model_hospital_patient,hospital_management.group_hospital_receptionist,1,1,1,0
+access_appointment_receptionist,hospital.appointment.receptionist,model_hospital_appointment,hospital_management.group_hospital_receptionist,1,1,1,0

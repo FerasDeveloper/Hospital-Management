@@ -1,8 +1,54 @@
 <odoo>
 
-    <!-- Doctor Group -->
-    <record id="group_hospital_doctor" model="res.groups">
-        <field name="name">Hospital Doctor</field>
-    </record>
+  <!-- Hospital Admin -->
+  <record id="group_hospital_admin" model="res.groups">
+    <field name="name">Hospital Admin</field>
+  </record>
+
+  <!-- Doctor -->
+  <record id="group_hospital_doctor" model="res.groups">
+    <field name="name">Hospital Doctor</field>
+  </record>
+
+  <!-- Receptionist -->
+  <record id="group_hospital_receptionist" model="res.groups">
+    <field name="name">Receptionist</field>
+  </record>
+
+  <!-- Doctor Appointment Rule -->
+  <record id="hospital_doctor_appointment_rule" model="ir.rule">
+    <field name="name">Doctor Own Appointments</field>
+
+    <field name="model_id" ref="model_hospital_appointment" />
+
+    <field name="domain_force">[('doctor_id.user_id', '=', user.id)]</field>
+
+    <field name="groups"
+      eval="[(4, ref('hospital_management.group_hospital_doctor'))]" />
+  </record>
+
+  <!-- Doctor Patient Rule -->
+  <record id="hospital_doctor_patient_rule" model="ir.rule">
+    <field name="name">Doctor Own Patients</field>
+
+    <field name="model_id" ref="model_hospital_patient" />
+
+    <field name="domain_force">[('appointment_ids.doctor_id.user_id', '=', user.id)]</field>
+
+    <field name="groups"
+      eval="[(4, ref('hospital_management.group_hospital_doctor'))]" />
+  </record>
+
+  <!-- Doctor Rule -->
+  <record id="hospital_doctor_rule" model="ir.rule">
+    <field name="name">Doctor Own Record</field>
+
+    <field name="model_id" ref="model_hospital_doctor" />
+
+    <field name="domain_force">[('user_id', '=', user.id)]</field>
+
+    <field name="groups"
+      eval="[(4, ref('hospital_management.group_hospital_doctor'))]" />
+  </record>
 
 </odoo>
