@@ -1,0 +1,8 @@
+<odoo>
+
+    <!-- Doctor Group -->
+    <record id="group_hospital_doctor" model="res.groups">
+        <field name="name">Hospital Doctor</field>
+    </record>
+
+</odoo>

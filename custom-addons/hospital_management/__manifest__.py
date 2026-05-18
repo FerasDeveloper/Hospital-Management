@@ -7,6 +7,7 @@
     # "depends": ["base"],
     "depends": ["base", "hr"],
     "data": [
+        "security/security.xml",
         "security/ir.model.access.csv",
         "views/patient_views.xml",
         "views/doctor_views.xml",
