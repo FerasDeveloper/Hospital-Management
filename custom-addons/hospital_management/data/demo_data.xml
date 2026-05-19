@@ -1,0 +1,44 @@
+<odoo>
+
+    <!-- Doctors -->
+
+    <record id="doctor_1" model="hospital.doctor">
+        <field name="name">Dr. Ahmed</field>
+        <field name="specialization">Cardiology</field>
+        <field name="phone">111111</field>
+        <field name="salary">5000</field>
+    </record>
+
+    <record id="doctor_2" model="hospital.doctor">
+        <field name="name">Dr. Mohammed</field>
+        <field name="specialization">Dentist</field>
+        <field name="phone">222222</field>
+        <field name="salary">4000</field>
+    </record>
+
+    <!-- Patients -->
+
+    <record id="patient_1" model="hospital.patient">
+        <field name="name">Ali</field>
+        <field name="age">25</field>
+        <field name="gender">male</field>
+        <field name="blood_group">a+</field>
+    </record>
+
+    <record id="patient_2" model="hospital.patient">
+        <field name="name">Maya</field>
+        <field name="age">30</field>
+        <field name="gender">female</field>
+        <field name="blood_group">o+</field>
+    </record>
+
+    <!-- Appointments -->
+
+    <record id="appointment_1" model="hospital.appointment">
+        <field name="patient_id" ref="patient_1"/>
+        <field name="doctor_id" ref="doctor_1"/>
+        <field name="appointment_date">2026-05-20 10:00:00</field>
+        <field name="status">confirmed</field>
+    </record>
+
+</odoo>

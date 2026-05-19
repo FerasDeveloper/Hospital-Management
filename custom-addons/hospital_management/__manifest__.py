@@ -12,7 +12,13 @@
         "views/patient_views.xml",
         "views/doctor_views.xml",
         "views/appointment_views.xml",
+        "data/demo_data.xml",
+        "reports/appointment_report.xml",
+        "reports/appointment_templates.xml",
     ],
     "installable": True,
     "application": True,
+    "demo": [
+        "demo/demo.xml",
+    ],
 }

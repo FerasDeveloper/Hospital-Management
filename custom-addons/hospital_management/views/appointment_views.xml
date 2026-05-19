@@ -5,7 +5,10 @@
     <field name="name">hospital.appointment.list</field>
     <field name="model">hospital.appointment</field>
     <field name="arch" type="xml">
-      <list>
+      <!-- <list> -->
+      <list decoration-success="status == 'done'"
+        decoration-danger="status == 'cancel'"
+        decoration-warning="status == 'draft'">
         <field name="patient_id" />
         <field name="doctor_id" />
         <field name="appointment_date" />
@@ -21,26 +24,37 @@
     <field name="arch" type="xml">
       <form>
         <header>
-
+          <button
+            name="%(action_appointment_report)d"
+            string="Print Report"
+            type="action"
+            class="btn-secondary" />
+          <!-- <button name="action_confirm" -->
           <button name="action_confirm"
+            groups="hospital_management.group_hospital_doctor,hospital_management.group_hospital_admin"
             string="Confirm"
             type="object"
             class="btn-primary"
             invisible="status != 'draft'" />
 
+          <!-- <button name="action_done" -->
           <button name="action_done"
+            groups="hospital_management.group_hospital_doctor,hospital_management.group_hospital_admin"
             string="Done"
             type="object"
             class="btn-success"
             invisible="status != 'confirmed'" />
 
+          <!-- <button name="action_cancel" -->
           <button name="action_cancel"
+            groups="hospital_management.group_hospital_doctor,hospital_management.group_hospital_admin"
             string="Cancel"
             type="object"
             class="btn-danger"
             invisible="status == 'done'" />
 
           <button name="action_draft"
+            groups="hospital_management.group_hospital_doctor,hospital_management.group_hospital_admin"
             string="Reset to Draft"
             type="object"
             invisible="status == 'draft'" />
