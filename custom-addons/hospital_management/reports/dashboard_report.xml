@@ -1,0 +1,18 @@
+<odoo>
+
+    <record id="action_dashboard_report"
+        model="ir.actions.report">
+
+        <field name="name">Dashboard Report</field>
+
+        <field name="model">hospital.dashboard</field>
+
+        <field name="report_type">qweb-pdf</field>
+
+        <field name="report_name">hospital_management.dashboard_report_template</field>
+
+        <field name="report_file">hospital_management.dashboard_report_template</field>
+
+    </record>
+
+</odoo>

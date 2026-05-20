@@ -74,6 +74,9 @@
             <group>
               <field name="appointment_date" />
               <field name="status" />
+              <field name="amount" />
+              <field name="invoice_id" />
+              <field name="payment_state" />
             </group>
           </group>
 
