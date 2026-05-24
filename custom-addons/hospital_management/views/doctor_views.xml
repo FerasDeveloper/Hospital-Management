@@ -9,9 +9,10 @@
         <field name="name" />
         <field name="specialization" />
         <field name="phone" />
-        <field name="salary" />
-        <field name="employee_id"/>
-        <field name="user_id"/>
+        <field name="salary"
+          groups="base.group_system,hospital_management.group_hospital_admin,hospital_management.group_hospital_medical_operations_manager" />
+        <field name="employee_id" />
+        <field name="user_id" />
       </list>
     </field>
   </record>
@@ -29,14 +30,15 @@
               <field name="age" />
               <field name="gender" />
               <field name="specialization" />
-              <field name="employee_id"/>
-              <field name="user_id"/>
+              <field name="employee_id" />
+              <field name="user_id" />
             </group>
 
             <group>
               <field name="phone" />
               <field name="email" />
-              <field name="salary" />
+              <field name="salary"
+                groups="base.group_system,hospital_management.group_hospital_admin,hospital_management.group_hospital_medical_operations_manager" />
             </group>
           </group>
           <notebook>
@@ -67,6 +69,7 @@
     name="Doctors"
     parent="hospital_management_root_menu"
     action="action_hospital_doctor"
-    sequence="20" />
+    sequence="20"
+    groups="base.group_system,hospital_management.group_hospital_admin,hospital_management.group_hospital_medical_operations_manager,hospital_management.group_hospital_doctor" />
 
 </odoo>

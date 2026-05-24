@@ -5,7 +5,7 @@
     "author": "Your Name",
     "category": "Management",
     # "depends": ["base"],
-    "depends": ["base", "hr"],
+    "depends": ["base", "hr", "project"],
     "data": [
         "security/security.xml",
         "security/ir.model.access.csv",

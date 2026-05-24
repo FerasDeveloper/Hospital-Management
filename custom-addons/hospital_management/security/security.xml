@@ -5,6 +5,11 @@
     <field name="name">Hospital Admin</field>
   </record>
 
+  <!-- Medical Operations Manager -->
+  <record id="group_hospital_medical_operations_manager" model="res.groups">
+    <field name="name">Medical Operations Manager</field>
+  </record>
+
   <!-- Doctor -->
   <record id="group_hospital_doctor" model="res.groups">
     <field name="name">Hospital Doctor</field>
@@ -39,16 +44,39 @@
       eval="[(4, ref('hospital_management.group_hospital_doctor'))]" />
   </record>
 
-  <!-- Doctor Rule -->
-  <record id="hospital_doctor_rule" model="ir.rule">
-    <field name="name">Doctor Own Record</field>
-
-    <field name="model_id" ref="model_hospital_doctor" />
-
-    <field name="domain_force">[('user_id', '=', user.id)]</field>
-
-    <field name="groups"
-      eval="[(4, ref('hospital_management.group_hospital_doctor'))]" />
-  </record>
-
+  <!-- قاعدة المهام العالمية الموحدة للطبيب والمستقبل ومدير العمليات -->
+<record id="hospital_task_global_rule" model="ir.rule">
+    <field name="name">Hospital: Task Visibility Rule</field>
+    <field name="model_id" ref="project.model_project_task"/>
+    <field name="domain_force">
+        [
+            '|',
+            # الشرط الأول: إذا كان مستخدم الحالي مدير عمليات أو أدمن، يرى كل شيء (قاعدة مفتوحة)
+            (user.has_group('hospital_management.group_hospital_medical_operations_manager') or user.has_group('hospital_management.group_hospital_admin'), '=', True),
+            
+            # الشرط الثاني: إذا لم يكن كذلك (طبيب أو مستقبل)، تنطبق عليه شروط الحصر الحصرية
+            '|',
+            ('user_ids', 'in', user.id),
+            ('create_uid', '=', user.id)
+        ]
+    </field>
+</record>
+<!-- قاعدة المشاريع العالمية: تمنع ظهور المشروع إذا لم يكن للمستخدم مهام فيه -->
+<record id="hospital_project_global_rule" model="ir.rule">
+    <field name="name">Hospital: Project Visibility Based on Tasks</field>
+    <field name="model_id" ref="project.model_project_project"/>
+    <field name="domain_force">
+        [
+            '|', '|',
+            # 1. إذا كان مدير العمليات أو الأدمن، يرى كل المشاريع بشكل طبيعي
+            (user.has_group('hospital_management.group_hospital_medical_operations_manager') or user.has_group('hospital_management.group_hospital_admin'), '=', True),
+            
+            # 2. إذا كان الطبيب أو المستقبل هو مدير المشروع نفسه
+            ('user_id', '=', user.id),
+            
+            # 3. الشرط السحري المعدل باستخدام user.env
+            ('task_ids', 'in', user.env['project.task'].search(['|', ('user_ids', 'in', user.id), ('create_uid', '=', user.id)]).ids)
+        ]
+    </field>
+</record>
 </odoo>
