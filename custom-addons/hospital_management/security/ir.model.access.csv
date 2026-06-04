@@ -23,3 +23,6 @@ access_task_receptionist_custom,hospital.task.receptionist.custom,project.model_
 
 access_project_role_doctor,project.role.doctor,project.model_project_role,hospital_management.group_hospital_doctor,1,0,0,0
 access_project_role_receptionist,project.role.receptionist,project.model_project_role,hospital_management.group_hospital_receptionist,1,0,0,0
+access_doctor_receptionist,hospital.doctor.receptionist,model_hospital_doctor,hospital_management.group_hospital_receptionist,1,0,0,0
+access_appointment_receptionist,hospital.appointment.receptionist,model_hospital_appointment,hospital_management.group_hospital_receptionist,1,1,1,0
+access_hospital_dashboard,hospital.dashboard,model_hospital_dashboard,hospital_management.group_hospital_admin,1,0,1,0

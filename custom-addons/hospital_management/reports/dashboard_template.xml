@@ -1,0 +1,189 @@
+<odoo>
+
+    <template id="dashboard_report_template">
+
+        <t t-call="web.html_container">
+
+            <t t-foreach="docs" t-as="doc">
+
+                <t t-call="web.external_layout">
+
+                    <div class="page">
+
+                        <h2>Hospital Dashboard Report</h2>
+
+                        <br/>
+
+                        <!-- Statistics -->
+                        <h3>Statistics</h3>
+
+                        <table class="table table-bordered">
+
+                            <tr>
+                                <th>Total Patients</th>
+                                <td>
+                                    <span t-field="doc.total_patients"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Total Doctors</th>
+                                <td>
+                                    <span t-field="doc.total_doctors"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Total Appointments</th>
+                                <td>
+                                    <span t-field="doc.total_appointments"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Done Appointments</th>
+                                <td>
+                                    <span t-field="doc.done_appointments"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Cancelled Appointments</th>
+                                <td>
+                                    <span t-field="doc.cancelled_appointments"/>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        <br/>
+                        <br/>
+
+                        <!-- Patients -->
+                        <h3>Patients</h3>
+
+                        <table class="table table-bordered">
+
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <t t-foreach="doc.patient_ids" t-as="patient">
+
+                                    <tr>
+                                        <td>
+                                            <span t-field="patient.name"/>
+                                        </td>
+
+                                        <td>
+                                            <span t-field="patient.age"/>
+                                        </td>
+
+                                        <td>
+                                            <span t-field="patient.gender"/>
+                                        </td>
+                                    </tr>
+
+                                </t>
+
+                            </tbody>
+
+                        </table>
+
+                        <br/>
+                        <br/>
+
+                        <!-- Doctors -->
+                        <h3>Doctors</h3>
+
+                        <table class="table table-bordered">
+
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Specialization</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <t t-foreach="doc.doctor_ids" t-as="doctor">
+
+                                    <tr>
+                                        <td>
+                                            <span t-field="doctor.name"/>
+                                        </td>
+
+                                        <td>
+                                            <span t-field="doctor.specialization"/>
+                                        </td>
+                                    </tr>
+
+                                </t>
+
+                            </tbody>
+
+                        </table>
+
+                        <br/>
+                        <br/>
+
+                        <!-- Appointments -->
+                        <h3>Recent Appointments</h3>
+
+                        <table class="table table-bordered">
+
+                            <thead>
+                                <tr>
+                                    <th>Patient</th>
+                                    <th>Doctor</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <t t-foreach="doc.appointment_ids" t-as="appointment">
+
+                                    <tr>
+                                        <td>
+                                            <span t-field="appointment.patient_id"/>
+                                        </td>
+
+                                        <td>
+                                            <span t-field="appointment.doctor_id"/>
+                                        </td>
+
+                                        <td>
+                                            <span t-field="appointment.appointment_date"/>
+                                        </td>
+
+                                        <td>
+                                            <span t-field="appointment.status"/>
+                                        </td>
+                                    </tr>
+
+                                </t>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </t>
+
+            </t>
+
+        </t>
+
+    </template>
+
+</odoo>

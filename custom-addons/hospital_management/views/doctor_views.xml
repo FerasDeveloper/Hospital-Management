@@ -11,6 +11,7 @@
         <field name="phone" />
         <field name="salary"
           groups="base.group_system,hospital_management.group_hospital_admin,hospital_management.group_hospital_medical_operations_manager" />
+        <field name="salary" />
         <field name="employee_id" />
         <field name="user_id" />
       </list>
@@ -23,6 +24,20 @@
     <field name="model">hospital.doctor</field>
     <field name="arch" type="xml">
       <form>
+        <div class="oe_button_box" name="button_box">
+
+          <button type="object"
+            name="action_view_appointments"
+            class="oe_stat_button"
+            icon="fa-calendar">
+
+            <field name="appointment_count"
+              string="Appointments"
+              widget="statinfo" />
+
+          </button>
+
+        </div>
         <sheet>
           <group>
             <group>
@@ -54,6 +69,46 @@
           </notebook>
         </sheet>
       </form>
+    </field>
+  </record>
+
+
+  <!-- Search View -->
+  <record id="view_hospital_doctor_search" model="ir.ui.view">
+    <field name="name">hospital.doctor.search</field>
+
+    <field name="model">hospital.doctor</field>
+
+    <field name="arch" type="xml">
+
+      <search>
+
+        <field name="name" />
+
+        <field name="specialization" />
+
+        <filter
+          name="filter_male"
+          string="Male"
+          domain="[('gender', '=', 'male')]"
+        />
+
+        <filter
+          name="filter_female"
+          string="Female"
+          domain="[('gender', '=', 'female')]"
+        />
+
+        <separator />
+
+        <filter
+          name="group_by_specialization"
+          string="Group By Specialization"
+          context="{'group_by': 'specialization'}"
+        />
+
+      </search>
+
     </field>
   </record>
 
