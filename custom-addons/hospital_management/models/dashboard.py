@@ -11,6 +11,19 @@ class HospitalDashboard(models.Model):
     done_appointments = fields.Integer(readonly=True)
     cancelled_appointments = fields.Integer(readonly=True)
 
+    patient_ids = fields.One2many('hospital.patient', compute='_compute_patient_ids')
+    doctor_ids = fields.One2many('hospital.doctor', compute='_compute_doctor_ids')
+    appointment_ids = fields.One2many('hospital.appointment', compute='_compute_appointment_ids')
+
+    @api.depends()
+    def _compute_patient_ids(self):
+        for record in self:
+            record.patient_ids = self.env['hospital.patient'].search([])
+
+    @api.depends()
+    def _compute_doctor_ids(self):
+        for record in self:
+            record.doctor_ids = self.env['hospital.doctor'].search([])
     patient_ids = fields.Many2many(
         "hospital.patient",
         readonly=True
