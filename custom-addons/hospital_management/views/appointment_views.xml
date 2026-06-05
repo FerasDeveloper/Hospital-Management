@@ -98,10 +98,12 @@
   </record>
 
   <!-- Menu -->
-  <menuitem id="hospital_appointment_menu"
-    name="Appointments"
-    parent="hospital_management_root_menu"
-    action="action_hospital_appointment"
-    sequence="30" />
+<!-- Menu -->
+<menuitem id="hospital_appointment_menu"
+          name="Appointments"
+          parent="hospital_management_root_menu"
+          action="action_hospital_appointment"
+          sequence="30"
+          groups="base.group_system,hospital_management.group_hospital_admin,hospital_management.group_hospital_medical_operations_manager,hospital_management.group_hospital_doctor,hospital_management.group_hospital_receptionist" />
 
 </odoo>

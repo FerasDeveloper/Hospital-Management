@@ -5,7 +5,7 @@
     "author": "Your Name",
     "category": "Management",
     # "depends": ["base"],
-    "depends": ["base", "hr", "account"],
+    "depends": ["base", "hr", "project", "hr_recruitment", "account"],
     "data": [
         "security/security.xml",
         "security/ir.model.access.csv",
@@ -16,6 +16,7 @@
         "views/patient_views.xml",
         "views/doctor_views.xml",
         "views/appointment_views.xml",
+        'views/hr_applicant_views.xml',
         "views/dashboard_views.xml",
         "data/demo_data.xml",
     ],

@@ -39,7 +39,8 @@
 
           <notebook>
             <page string="Medical Notes">
-              <field name="notes" />
+              <field name="notes"
+                groups="base.group_system,hospital_management.group_hospital_admin,hospital_management.group_hospital_doctor,hospital_management.group_hospital_medical_operations_manager" />
             </page>
             <page string="Appointments">
               <field name="appointment_ids">
@@ -73,6 +74,7 @@
     name="Patients"
     parent="hospital_management_root_menu"
     action="action_hospital_patient"
-    sequence="10" />
+    sequence="10"
+    groups="base.group_system,hospital_management.group_hospital_admin,hospital_management.group_hospital_medical_operations_manager,hospital_management.group_hospital_doctor,hospital_management.group_hospital_receptionist" />
 
 </odoo>
