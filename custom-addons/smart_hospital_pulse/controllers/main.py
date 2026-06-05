@@ -19,6 +19,12 @@ class HospitalVitalsController(http.Controller):
             ticket_id = data.get('ticket_id')
             heart_rate = data.get('heart_rate')
 
+            if not ticket_id or heart_rate is None:
+                return {
+                    'status': 'error',
+                    'message': 'ticket_id and heart_rate are required'
+                }
+
             ticket = request.env['crm.lead'].sudo().search(
                 [('id', '=', ticket_id)],
                 limit=1
@@ -30,11 +36,15 @@ class HospitalVitalsController(http.Controller):
                     'message': f'Ticket {ticket_id} not found'
                 }
 
+            ticket.write({
+                'patient_heart_rate': heart_rate
+            })
+
             return {
                 'status': 'ok',
-                'ticket_name': ticket.name,
-                'ticket_id': ticket.id,
-                'heart_rate': heart_rate
+                'ticket_id': ticket_id,
+                'heart_rate': heart_rate,
+                'is_critical': ticket.is_critical_iot_alert
             }
 
         except Exception as e:

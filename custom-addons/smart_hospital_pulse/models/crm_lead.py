@@ -39,4 +39,11 @@ class CrmLeadPulse(models.Model):
                     subtype_xmlid="mail.mt_note",
                 )
 
+            else:
+
+                super(CrmLeadPulse, self).write({
+                    "priority": "0",
+                    "is_critical_iot_alert": False,
+                })
+
         return result
